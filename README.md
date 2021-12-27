@@ -1,7 +1,7 @@
 # ppsspp-GTARemastered
 Enables right analog stick camera control for GTA Stories games in PPSSPP
 
-This is a PPSSPP compatible version of [TheOfficialFloW's RemasteredControls]: https://github.com/TheOfficialFloW/RemasteredControls 
+This is a PPSSPP compatible version of [TheOfficialFloW's RemasteredControls](https://github.com/TheOfficialFloW/RemasteredControls)
 
 ## Installation
 
