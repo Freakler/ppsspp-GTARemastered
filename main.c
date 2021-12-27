@@ -160,30 +160,30 @@ static void CheckModules() {
     for (i = 0; i < count; ++i) {
       info.size = sizeof(SceKernelModuleInfo);
       
-	  if (sceKernelQueryModuleInfo(modules[i], &info) < 0) {
+      if (sceKernelQueryModuleInfo(modules[i], &info) < 0) {
         continue;
       }
 	  
       if (strcmp(info.name, "GTA3") == 0) { // GTA City Stories found
-		u32 text_addr = info.text_addr;
-		u32 text_size = info.text_size;
-		
-		for (j = 0; j < text_size; j += 4) {
-		  u32 addr = text_addr + j;
+        u32 text_addr = info.text_addr;
+        u32 text_size = info.text_size;
 
-		  if ((gta_version == -1 || gta_version == 0) && PatchVCS(addr, text_addr)) {
-			gta_version = 0; // VCS found
-			continue;
-		  }
+        for (j = 0; j < text_size; j += 4) {
+          u32 addr = text_addr + j;
 
-		  if ((gta_version == -1 || gta_version == 1) && PatchLCS(addr, text_addr)) {
-			gta_version = 1; // LCS found
-			continue;
-		  }
-		}
+          if ((gta_version == -1 || gta_version == 0) && PatchVCS(addr, text_addr)) {
+            gta_version = 0; // VCS found
+            continue;
+          }
 
-		sceKernelDcacheWritebackAll();
-		return;
+          if ((gta_version == -1 || gta_version == 1) && PatchLCS(addr, text_addr)) {
+            gta_version = 1; // LCS found
+            continue;
+          }
+        }
+
+        sceKernelDcacheWritebackAll();
+        return;
       }
     }
   }
